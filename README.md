@@ -1,44 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Color Picker UX Engineer Challenge
 
-## Available Scripts
+The purpose of this challenge is to evaluate your front end technical skills. This challenge should take you no longer than an hour or two to complete.
 
-In the project directory, you can run:
+Screen Shot:
+![Color Picker](https://raw.githubusercontent.com/hoverinc/ux-engineer-test/master/ScreenShot.png)
 
-### `npm start`
+Demo:
+https://raw.githubusercontent.com/hoverinc/ux-engineer-test/master/Demo.mov
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## The Challenge
+HOVER is in need of a color picker for our web apps. In this repository you will find a screenshot and a short demo video that you can use as a reference.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+We would like for the Color Picker to be customizable and the components API should be well thought out. For instance, we would want the option of supplying our own Title Component instead of a string for the title (we might also want to supply our own Color Swatch Components).
 
-### `npm test`
+You will not be given any detailed design specs. Part of this challenge is to test your design eye. Try to get as pixel perfect as you can. What we can tell you is that all margins and spacing are `base 4`.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Boiler Plate
+This challenge utilizes [`react`](https://reactjs.org/) and [`styled-components`](https://www.styled-components.com) as that is what we use at HOVER. Please take some time to understand `styled-components` if you can, if time doesn't permit, feel free to use whatever styling library you would like (less, sass, plain css, etc).
 
-### `npm run build`
+We have included the [`randomcolor`](https://github.com/davidmerfield/randomColor) library to easily generate colors.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The boiler plate is the output of `create-react-app` and you may start it with `npm start` or `yarn start`
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Animations
+From the demo you can see the color swatches animate in a staggered spring-like fashion. Try to achieve this effect the best you can. There are plenty of spring and physics-based animation libraries out there. Feel free to use whatever you would like. We are investigating `react-pose` internally at HOVER so you might want to start there.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### Testing
+Please write some tests (preferably in `jest` / `enzyme`) for the Color Picker component. Make sure you cover edge cases (what happens if we give weird data to the props)?
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Developer Experience
+As a component library author you should try to help users of your library when things don't go as planned.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+For instance, given a component such as:
+jsx```
+<NumberDisplay number={123} />
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+If a developer accidentally provides a non number value to the number prop:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+jsx```
+<NumberDisplay number={{ oops: 'abc' }} />
+```
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+instead of failing or crashing, we should give a warning such as: "Only numbers are allowed to be passed to prop 'number' of NumberDisplay"
