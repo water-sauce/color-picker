@@ -2,11 +2,9 @@
 
 The purpose of this challenge is to evaluate your front end technical skills. This challenge should take you no longer than an hour or two to complete.
 
-Screen Shot:
-![Color Picker](https://raw.githubusercontent.com/hoverinc/ux-engineer-test/master/ScreenShot.png)
+![Screen Shot](https://raw.githubusercontent.com/hoverinc/ux-engineer-test/master/ScreenShot.png)
 
-Demo:
-https://raw.githubusercontent.com/hoverinc/ux-engineer-test/master/Demo.mov
+[Demo Video](https://raw.githubusercontent.com/hoverinc/ux-engineer-test/master/Demo.mov)
 
 ## The Challenge
 HOVER is in need of a color picker for our web apps. In this repository you will find a screenshot and a short demo video that you can use as a reference.
@@ -33,13 +31,13 @@ Please write some tests (preferably in `jest` / `enzyme`) for the Color Picker c
 As a component library author you should try to help users of your library when things don't go as planned.
 
 For instance, given a component such as:
-jsx```
+```
 <NumberDisplay number={123} />
 ```
 
 If a developer accidentally provides a non number value to the number prop:
 
-jsx```
+```
 <NumberDisplay number={{ oops: 'abc' }} />
 ```
 
