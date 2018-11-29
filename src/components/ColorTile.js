@@ -8,7 +8,7 @@ const ColorGrid = posed.ul({
     staggerChildren: 50
   },
   closed: { 
-    delay: 3000 
+    delay: 300 
   }
 });
 
@@ -18,7 +18,7 @@ const ColorTile = styled(posed.li({
       opacity: 1 
     },
     closed: { 
-      opacity: 1,
+      opacity: 0,
       delay: 3000 
     }
   }))`
@@ -49,25 +49,17 @@ const Title = styled.h1`
 
 
 class ColorTiles extends Component {
-  componentDidMount() {
-    console.log( this.props.newSwatch );
-  }
-
-	changeColor( color ) {
-		// console.log(color);
+  changeColor( color ) {
      this.props.handleClick( color );
   }
 
 	render() {
 		return (
-		<ColorGrid pose={this.props.newSwatch ? 'open' : 'closed'}>
+		<ColorGrid pose={this.props.isRun ? 'open' : 'closed'} className={this.props.isRun ? 'open' : 'closed'}>
 			<Title>{ this.props.title }</Title>
 			{ this.props.swatches.map( ( color, index ) => (
-			<ColorTile color={ color } key={ color + index } onClick={ () => { this.changeColor( color ) } }>
-			 { color }
-			</ColorTile>
-			)
-			)}
+			<ColorTile color={ color } key={ color + index } onClick={ () => { this.changeColor( color ) } } />
+			))}
 		</ColorGrid>
 		)
 	}

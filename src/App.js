@@ -32,43 +32,56 @@ class App extends Component {
   state = {
       color: '#ffffff',
       swatches: randomColors({ count: 20 }),
-      newSwatch: false
+      isRun: true
   }
 
   constructor( props ) {
     super( props );
+    // this.child = React.createRef();
     this.title = 'Select Color';
     this.handleClick = this.handleClick.bind(this);
     this.changeColorScale = this.changeColorScale.bind(this);
   }
+
 
   handleClick( color ){
     this.setState({ color: color });
   }
 
   changeColorScale( scale ) {
+    // console.log( this.state.newSwatch );
     this.setState({ 
-      swatches: randomColors({ hue: scale, count: 20 }),
-      newSwatch: true
+      swatches: randomColors({ 
+        hue: scale, 
+        count: 20 
+      }),
+      isRun: false
     })
-    console.log( this.state.newSwatch );
+
+    setTimeout(
+        function() {
+            this.setState({isRun: true});
+        }.bind(this), 0
+    );
+
   }
 
   render() {
     const { color } = this.state;
     const { swatches } = this.state;
-    const { newSwatch } = this.state;
+
     return (
       <Container>
         <GlobalStyle color={ color } />
         <ColorOptions changeColorScale={ this.changeColorScale } ranges={ colorRanges } />
-        <ColorTiles title={ this.title } swatches={ swatches } handleClick={ this.handleClick } newSwatch={ newSwatch }/>
+        <ColorTiles title={ this.title } swatches={ swatches } handleClick={ this.handleClick } isRun={ this.state.isRun } />
       </Container>
     );
   }
 }
 
-
+// this.child.current.startAnimation();
+// ref={this.child}
 export default App;
 
 
