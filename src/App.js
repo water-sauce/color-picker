@@ -32,30 +32,29 @@ class App extends Component {
   state = {
       color: '#ffffff',
       swatches: randomColors({ count: 20 }),
-      isRun: true
+      swatchChange: true
   }
 
   constructor( props ) {
     super( props );
     this.title = 'Select Color';
-    this.handleClick = this.handleClick.bind(this);
+    this.changeColorTile = this.changeColorTile.bind(this);
     this.changeColorScale = this.changeColorScale.bind(this);
   }
 
 
-  handleClick( color ){
+  changeColorTile( color ){
     this.setState({ color: color });
   }
 
   changeColorScale( scale ) {
     this.setState({ 
       swatches: randomColors({ hue: scale, count: 20 }),
-      isRun: false
+      swatchChange: false
     })
-
     setTimeout(
         function() {
-            this.setState({isRun: true});
+            this.setState({ swatchChange: true });
         }.bind(this), 0
     );
 
@@ -69,7 +68,7 @@ class App extends Component {
       <Container>
         <GlobalStyle color={ color } />
         <ColorOptions changeColorScale={ this.changeColorScale } ranges={ colorRanges } />
-        <ColorTiles title={ this.title } swatches={ swatches } handleClick={ this.handleClick } isRun={ this.state.isRun } />
+        <ColorTiles title={ this.title } swatches={ swatches } changeColorTile={ this.changeColorTile } swatchChange={ this.state.swatchChange } />
       </Container>
     );
   }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import posed from 'react-pose';
+import PropTypes from 'prop-types';
 
 const ColorOptionWrapper = styled.ul`
 	min-width: 100%;
@@ -25,21 +26,20 @@ const ColorOption = styled.li`
 `;
 
 class ColorOptions extends Component {
-	handleColorChange( scale ) {
-	// console.log( scale );
-    this.props.changeColorScale( scale );
-  }
-
 	render() {
 		return (
 			<ColorOptionWrapper>
 				{ this.props.ranges.map( ( range, index ) => (
-				<ColorOption color={ range } onClick={ () => { this.handleColorChange( range ) } } key={ range + index }>{ range }</ColorOption>
+				<ColorOption color={ range } onClick={ () => { this.props.changeColorScale( range ) } } key={ range + index }>{ range }</ColorOption>
 				)
 				)}
 			</ColorOptionWrapper>
 		)
 	}
 }
+
+ColorTiles.propTypes = {
+  ranges: PropTypes.array
+};
 
 export default ColorOptions;

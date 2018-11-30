@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import posed from 'react-pose';
+import PropTypes from 'prop-types';
 
 const ColorGridWrapper = styled.div`
   height: auto;
   max-height: 80%;
+  min-height: 80%;
   width: 60%;
   min-width: 320px;
   margin-top: 1rem;
@@ -17,13 +19,8 @@ const ColorGridWrapper = styled.div`
 `;
 
 const ColorGrid = styled(posed.ul({
-    open: {
-      delayChildren: 100,
-      staggerChildren: 25
-    },
-    closed: { 
-      delay: 300 
-    }
+    load: { delayChildren: 100, staggerChildren: 25 },
+    unload: { delay: 300 }
   }))`
   margin: 0;
   display: grid;
@@ -37,21 +34,10 @@ const ColorGrid = styled(posed.ul({
 
 const ColorTile = styled(posed.li({
     hoverable: true,
-    init: {
-      scale: 1,
-    },
-    hover: { 
-      scale: 1.1,
-    },
-    open: { 
-      scale: 1,
-      opacity: 1,
-      transition: { type: 'spring' }
-    },
-    closed: {
-      scale: 0,
-      opacity: 0,
-    }
+    init: { scale: 1 },
+    hover: { scale: 1.1 },
+    load: { scale: 1, opacity: 1, transition: { type: 'spring' } },
+    unload: { scale: 0, opacity: 0 }
   }))`
   margin: 12px;
   border-radius: 4px;
@@ -80,17 +66,13 @@ const Title = styled.h1`
 
 
 class ColorTiles extends Component {
-  changeColor( color ) {
-     this.props.handleClick( color );
-  }
-
 	render() {
 		return (
       <ColorGridWrapper>
         <Title>{this.props.title}</Title>
-    		<ColorGrid pose={this.props.isRun ? 'open' : 'closed'} >
+    		<ColorGrid pose={this.props.swatchChange ? 'load' : 'unload'} >
     			{ this.props.swatches.map( ( color, index ) => (
-    			<ColorTile color={ color } key={ color + index } onClick={ () => { this.changeColor( color ) } } />
+    			<ColorTile color={ color } key={ color + index } onClick={ () => { this.props.changeColorTile( color ) } } />
     			))}
     		</ColorGrid>
       </ColorGridWrapper>
@@ -98,6 +80,14 @@ class ColorTiles extends Component {
 	}
 }
 
-// pose={ newSwatch ? 'open' : 'closed'}
+ColorTiles.defaultProps = {
+  swatches: 'random'
+};
+
+ColorTiles.propTypes = {
+  swatchChange: PropTypes.bool,
+  swatches: PropTypes.array.isRequired,
+  title: PropTypes.string
+};
 
 export default ColorTiles;
