@@ -12,9 +12,9 @@ const ColorGridWrapper = styled.div`
   margin-top: 1rem;
   padding: 1rem;
   background-color: #FFFFFF;
-  -webkit-box-shadow: 0px 0px 15px 0px rgb(197, 197, 197, 1);
-  -moz-box-shadow: 0px 0px 15px 0px rgb(197, 197, 197, 1);
-  box-shadow: 0px 0px 15px 0px rgb(197, 197, 197, 1);
+  -webkit-box-shadow: 0px 0px 16px 0px rgb(197, 197, 197, 1);
+  -moz-box-shadow: 0px 0px 16px 0px rgb(197, 197, 197, 1);
+  box-shadow: 0px 0px 16px 0px rgb(197, 197, 197, 1);
   overflow-x: scroll;
 `;
 
@@ -30,8 +30,6 @@ const ColorGrid = styled(posed.ul({
   padding: 0;  
 `;
 
-
-
 const ColorTile = styled(posed.li({
     hoverable: true,
     init: { scale: 1 },
@@ -41,9 +39,9 @@ const ColorTile = styled(posed.li({
   }))`
   margin: 12px;
   border-radius: 4px;
-  -webkit-box-shadow: 0px 0px 5px 0px rgb(197, 197, 197, 1);
-  -moz-box-shadow: 0px 0px 5px 0px rgb(197, 197, 197, 1);
-  box-shadow: 0px 0px 5px 0px rgb(197, 197, 197, 1);
+  -webkit-box-shadow: 0px 0px 4px 0px rgb(197, 197, 197, 1);
+  -moz-box-shadow: 0px 0px 4px 0px rgb(197, 197, 197, 1);
+  box-shadow: 0px 0px 4px 0px rgb(197, 197, 197, 1);
   background: ${props => props.color || "#FFFFFF"};
   :hover {
   	cursor: pointer;
@@ -54,7 +52,6 @@ const ColorTile = styled(posed.li({
     padding-bottom: 100%;
   }
 `;
-
 
 const Title = styled.h1`
   display: block;
@@ -80,9 +77,6 @@ class ColorTiles extends Component {
 	}
 }
 
-ColorTiles.defaultProps = {
-  swatches: 'random'
-};
 
 ColorTiles.propTypes = {
   swatchChange: PropTypes.bool,

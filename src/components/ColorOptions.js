@@ -38,7 +38,7 @@ class ColorOptions extends Component {
 	}
 }
 
-ColorTiles.propTypes = {
+ColorOptions.propTypes = {
   ranges: PropTypes.array
 };
 

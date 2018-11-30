@@ -42,7 +42,6 @@ class App extends Component {
     this.changeColorScale = this.changeColorScale.bind(this);
   }
 
-
   changeColorTile( color ){
     this.setState({ color: color });
   }
@@ -52,12 +51,12 @@ class App extends Component {
       swatches: randomColors({ hue: scale, count: 20 }),
       swatchChange: false
     })
-    setTimeout(
-        function() {
-            this.setState({ swatchChange: true });
-        }.bind(this), 0
-    );
 
+    setTimeout(
+      function() {
+        this.setState({ swatchChange: true });
+      }.bind(this), 0
+    );
   }
 
   render() {
