@@ -26,7 +26,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const colorRanges = [ 'red', 'purple', 'blue', 'green', 'orange']
+const colorRanges = [ 'red', 'purple', 'blue', 'green', 'orange' ];
 
 class App extends Component {
   state = {
@@ -37,7 +37,6 @@ class App extends Component {
 
   constructor( props ) {
     super( props );
-    // this.child = React.createRef();
     this.title = 'Select Color';
     this.handleClick = this.handleClick.bind(this);
     this.changeColorScale = this.changeColorScale.bind(this);
@@ -49,12 +48,8 @@ class App extends Component {
   }
 
   changeColorScale( scale ) {
-    // console.log( this.state.newSwatch );
     this.setState({ 
-      swatches: randomColors({ 
-        hue: scale, 
-        count: 20 
-      }),
+      swatches: randomColors({ hue: scale, count: 20 }),
       isRun: false
     })
 
@@ -80,8 +75,6 @@ class App extends Component {
   }
 }
 
-// this.child.current.startAnimation();
-// ref={this.child}
 export default App;
 
 
